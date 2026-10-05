@@ -162,7 +162,7 @@
       min-height: 100vh;
       padding-top: 72px;
       display: grid;
-      grid-template-columns: 55fr 45fr;
+      grid-template-columns: 60fr 40fr;
       overflow: hidden;
     }
 
@@ -287,26 +287,26 @@
       text-transform: uppercase;
     }
 
-    /* Editorial photo panel — inset from top so it breathes under the header */
+    /* Contained portrait card — padded on all sides */
     .hero-right {
       position: relative;
       overflow: hidden;
-      padding-top: 32px;
+      padding: 40px 36px 56px 16px;
     }
 
     .hero-image-frame {
       position: absolute;
-      top: 32px;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 40px;
+      left: 16px;
+      right: 36px;
+      bottom: 56px;
     }
 
     .hero-photo-placeholder {
       width: 100%;
       height: 100%;
       background: var(--cream-dark);
-      border-radius: 16px 16px 0 0;
+      border-radius: 16px;
       overflow: hidden;
       position: relative;
     }
