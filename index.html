@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Liberty Menopause Care — Dr Emma Ward</title>
+  <title>Liberty Menopause Care | Dr Emma Ward</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -162,18 +162,15 @@
       min-height: 100vh;
       padding-top: 72px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-left: 40px;
-      padding-right: 40px;
+      grid-template-columns: 60fr 40fr;
+      overflow: hidden;
     }
 
     .hero-left {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 80px 60px 80px 0;
+      padding: 80px 64px 80px clamp(40px, calc((100vw - 1200px) / 2 + 40px), 160px);
     }
 
     .hero-eyebrow {
@@ -186,14 +183,6 @@
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 24px;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--gold);
     }
 
     .hero h1 {
@@ -290,29 +279,41 @@
       text-transform: uppercase;
     }
 
+    /* Contained portrait card, padded on all sides */
     .hero-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 0 80px 60px;
+      position: relative;
+      overflow: hidden;
+      padding: 40px 36px 56px 16px;
     }
 
     .hero-image-frame {
-      position: relative;
-      width: 100%;
-      max-width: 440px;
+      position: absolute;
+      top: 40px;
+      left: 16px;
+      right: 36px;
+      bottom: 56px;
     }
 
     .hero-photo-placeholder {
       width: 100%;
-      aspect-ratio: 3/4;
+      height: 100%;
       background: var(--cream-dark);
-      border-radius: 240px 240px 20px 20px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
+      border-radius: 16px;
       overflow: hidden;
       position: relative;
+    }
+
+    /* Cinematic gradient so credential label reads cleanly */
+    .hero-photo-placeholder::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 52%;
+      background: linear-gradient(to top, rgba(15,28,28,0.80) 0%, rgba(15,28,28,0.20) 55%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
     }
 
     .hero-photo-img {
@@ -321,69 +322,36 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center 15%;
+      z-index: 1;
     }
 
+    /* Credential label floated over the photo gradient */
     .photo-label {
       position: absolute;
-      bottom: -1px;
-      left: -1px;
-      right: -1px;
-      background: rgba(246,241,234,0.95);
-      padding: 20px 24px;
-      border-radius: 0 0 20px 20px;
-      backdrop-filter: blur(4px);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 36px 44px;
+      z-index: 3;
+      background: none;
+      backdrop-filter: none;
+      border-top: 1px solid rgba(255,255,255,0.12);
     }
 
     .photo-label-name {
       font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      color: var(--teal);
+      font-size: 20px;
       font-weight: 500;
+      color: var(--white);
+      letter-spacing: 0.01em;
     }
 
     .photo-label-title {
       font-size: 12px;
-      color: var(--mid-grey);
-      margin-top: 2px;
-    }
-
-    .accreditation-badge {
-      position: absolute;
-      top: 28px;
-      right: -20px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .badge-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--teal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      font-size: 16px;
-    }
-
-    .badge-text {
-      font-size: 10px;
-      font-weight: 500;
-      text-align: center;
-      color: var(--charcoal);
+      color: rgba(255,255,255,0.68);
+      margin-top: 4px;
       letter-spacing: 0.04em;
-      text-transform: uppercase;
-      max-width: 70px;
-      line-height: 1.3;
     }
 
     /* ── TRUST BAR ──────────────────────────────────────── */
@@ -1428,13 +1396,133 @@
 
     .promo-band strong { font-weight: 600; }
 
+    /* ── PREMIUM ENHANCEMENTS ───────────────────────────── */
+
+    /* Custom text selection */
+    ::selection {
+      background: rgba(43,77,77,0.15);
+      color: var(--teal);
+    }
+
+    /* Header gold accent on scroll */
+    header {
+      transition: border-color 0.3s;
+    }
+    header.scrolled {
+      border-bottom-color: var(--gold);
+    }
+
+    /* Nav link slide-in underline */
+    nav a:not(.nav-cta) {
+      position: relative;
+    }
+    nav a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--teal);
+      transition: width 0.25s ease;
+    }
+    nav a:not(.nav-cta):hover::after {
+      width: 100%;
+    }
+    nav .dropdown > a::after { display: none; }
+
+    /* Condition card lift */
+    .condition-card {
+      transition: background 0.2s, transform 0.22s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.22s;
+    }
+    .condition-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(43,77,77,0.11);
+      background: var(--white);
+    }
+    .condition-card:hover .condition-link::after {
+      transform: translateX(6px);
+    }
+
+    /* Submit button arrow nudge */
+    .btn-submit svg {
+      transition: transform 0.2s ease;
+    }
+    .btn-submit:hover svg {
+      transform: translateX(5px);
+    }
+
+    /* Typography refinements */
+    .hero h1 {
+      letter-spacing: -0.02em;
+    }
+    .section-header h2,
+    .about-content h2,
+    .pricing-cta h2,
+    .contact-header h2 {
+      letter-spacing: -0.01em;
+    }
+    .hero-strapline {
+      font-weight: 300;
+      color: #7A7A7A;
+    }
+
+    /* Trust bar SVG icons */
+    .trust-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+    .trust-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Scroll-in animations */
+    .animate-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .animate-in.in-view {
+      opacity: 1;
+      transform: none;
+    }
+    .animate-stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .animate-stagger.in-view > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0s; }
+    .animate-stagger.in-view > *:nth-child(2) { opacity:1; transform:none; transition-delay: 0.08s; }
+    .animate-stagger.in-view > *:nth-child(3) { opacity:1; transform:none; transition-delay: 0.16s; }
+    .animate-stagger.in-view > *:nth-child(4) { opacity:1; transform:none; transition-delay: 0.24s; }
+    .animate-stagger.in-view > *:nth-child(5) { opacity:1; transform:none; transition-delay: 0.32s; }
+    .animate-stagger.in-view > *:nth-child(6) { opacity:1; transform:none; transition-delay: 0.40s; }
+
+    /* Refined focus states */
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+    }
+
   </style>
 </head>
 <body>
 
   <!-- PROMO BAND -->
   <div class="promo-band">
-    <strong>Now accepting new patients</strong> — Initial consultations available in Hayfield and online &nbsp;·&nbsp; <a href="#pricing" style="color:inherit;font-weight:600;text-decoration:underline;">Book now →</a>
+    <strong>Now accepting new patients</strong>. Initial consultations available in Hayfield and online &nbsp;·&nbsp; <a href="#pricing" style="color:inherit;font-weight:600;text-decoration:underline;">Book now →</a>
   </div>
 
   <!-- HEADER -->
@@ -1509,47 +1597,53 @@
             <div class="photo-label-title">MBChB MRCGP DRCOG DFFP · Advanced Cert. Menopause Care</div>
           </div>
         </div>
-        <div class="accreditation-badge">
-          <div class="badge-icon">✦</div>
-          <span class="badge-text">BMS Find a Specialist</span>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- TRUST BAR -->
-  <div class="trust-bar">
+  <div class="trust-bar animate-in">
     <div class="trust-bar-inner">
       <div class="trust-item">
-        <span class="trust-icon">⬡</span>
+        <span class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        </span>
         <div class="trust-text">
           <span class="trust-label">BMS Accredited</span>
           <span class="trust-sub">British Menopause Society</span>
         </div>
       </div>
       <div class="trust-item">
-        <span class="trust-icon">◈</span>
+        <span class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </span>
         <div class="trust-text">
           <span class="trust-label">CQC Registered</span>
           <span class="trust-sub">Care Quality Commission</span>
         </div>
       </div>
       <div class="trust-item">
-        <span class="trust-icon">◎</span>
+        <span class="trust-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </span>
         <div class="trust-text">
           <span class="trust-label">RCGP Member</span>
           <span class="trust-sub">Royal College of GPs</span>
         </div>
       </div>
       <div class="trust-item">
-        <span class="trust-icon">◇</span>
+        <span class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </span>
         <div class="trust-text">
           <span class="trust-label">ISGE Advanced Practitioner</span>
           <span class="trust-sub">International School of Gyn. Endocrinology</span>
         </div>
       </div>
       <div class="trust-item">
-        <span class="trust-icon">◐</span>
+        <span class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </span>
         <div class="trust-text">
           <span class="trust-label">NICE &amp; BMS Guidelines</span>
           <span class="trust-sub">Evidence-based practice</span>
@@ -1559,14 +1653,14 @@
   </div>
 
   <!-- INTRO -->
-  <section class="intro">
+  <section class="intro animate-in">
     <div>
       <span class="intro-label">About the clinic</span>
     </div>
     <div>
       <h2>Taking the time to give <em>midlife the care it deserves</em></h2>
       <p>
-        Midlife health is complex — and too often dismissed. At Liberty Menopause Care, every consultation begins with a thorough review of your personal history: reproductive, medical, and family. There are no rushed appointments and no one-size-fits-all solutions.
+        Midlife health is complex, and too often dismissed. At Liberty Menopause Care, every consultation begins with a thorough review of your personal history: reproductive, medical, and family. There are no rushed appointments and no one-size-fits-all solutions.
       </p>
       <p>
         Dr Emma Ward combines a deep clinical grounding in general practice with advanced specialist training in menopause care, hormonal health, and women's wellbeing. She holds membership of the British Menopause Society, the European Menopause and Andropause Society, and the National Association for Premenstrual Syndromes.
@@ -1585,14 +1679,14 @@
   <!-- CONDITIONS -->
   <section class="conditions" id="conditions">
     <div class="conditions-inner">
-      <div class="section-header">
+      <div class="section-header animate-in">
         <div>
           <p class="section-eyebrow">Conditions &amp; Care</p>
           <h2>Comprehensive care for every stage of hormonal health</h2>
         </div>
         <p>Whether you are in the early stages of perimenopause or managing long-term hormonal health, Dr Ward provides specialist-led care tailored to you.</p>
       </div>
-      <div class="conditions-grid">
+      <div class="conditions-grid animate-stagger">
         <a href="#" class="condition-card">
           <span class="condition-number">01</span>
           <h3>Menopause</h3>
@@ -1602,7 +1696,7 @@
         <a href="#" class="condition-card">
           <span class="condition-number">02</span>
           <h3>Perimenopause</h3>
-          <p>Early recognition and support for the perimenopausal transition — often the most difficult phase, marked by fluctuating hormones and unpredictable symptoms.</p>
+          <p>Early recognition and support for the perimenopausal transition, often the most difficult phase, marked by fluctuating hormones and unpredictable symptoms.</p>
           <span class="condition-link">Learn more</span>
         </a>
         <a href="#" class="condition-card">
@@ -1634,7 +1728,7 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="about" id="about">
+  <section class="about animate-in" id="about">
     <div class="about-image">
       <div class="about-photo">
         <img src="public/images/hero/Dr%20Emma%20Ward.jpg" alt="Dr Emma Ward" class="about-photo-img">
@@ -1655,16 +1749,16 @@
       <h2>A GP who chose to <em>specialise</em></h2>
       <p class="subtitle">Manchester Medical School graduate · 19 years clinical experience</p>
       <p>
-        Dr Emma Ward trained at Manchester Medical School and has worked as a GP for nearly two decades. Over time, she developed a specialist interest in women's hormonal health — particularly the underdiagnosed and undertreated area of menopause — and completed advanced training with the British Menopause Society.
+        Dr Emma Ward trained at Manchester Medical School and has worked as a GP for nearly two decades. Over time, she developed a specialist interest in women's hormonal health, particularly the underdiagnosed and undertreated area of menopause, and completed advanced training with the British Menopause Society.
       </p>
       <p>
         She established Liberty Menopause Care to provide the kind of thorough, unhurried care that midlife women deserve: appointments long enough to take a proper history, treatment plans grounded in current evidence, and a clinical relationship built on trust.
       </p>
       <div class="memberships">
-        <span class="membership-item">British Menopause Society (BMS) — Accredited Specialist &amp; Find a Specialist listing</span>
+        <span class="membership-item">British Menopause Society (BMS): Accredited Specialist &amp; Find a Specialist listing</span>
         <span class="membership-item">European Menopause and Andropause Society (EMAS)</span>
         <span class="membership-item">National Association for Premenstrual Syndromes (NAPS)</span>
-        <span class="membership-item">International School of Gynaecological &amp; Reproductive Endocrinology — Advanced Practitioner</span>
+        <span class="membership-item">International School of Gynaecological &amp; Reproductive Endocrinology: Advanced Practitioner</span>
       </div>
       <a href="#contact" class="btn-primary" style="align-self:flex-start">Book a consultation with Dr Ward</a>
     </div>
@@ -1675,7 +1769,7 @@
     <div class="process-inner">
       <p class="section-eyebrow">How it works</p>
       <h2>What to expect from your first appointment</h2>
-      <div class="steps">
+      <div class="steps animate-stagger">
         <div class="step">
           <span class="step-number">01</span>
           <h3>Get in touch</h3>
@@ -1684,7 +1778,7 @@
         <div class="step">
           <span class="step-number">02</span>
           <h3>Initial consultation</h3>
-          <p>A dedicated one-hour appointment — face-to-face in Hayfield or online. Dr Ward takes a thorough medical, reproductive, and family history to understand the full picture.</p>
+          <p>A dedicated one-hour appointment, face-to-face in Hayfield or online. Dr Ward takes a thorough medical, reproductive, and family history to understand the full picture.</p>
         </div>
         <div class="step">
           <span class="step-number">03</span>
@@ -1705,10 +1799,10 @@
     <div class="testimonials-inner">
       <p class="section-eyebrow">Patient experiences</p>
       <h2>What patients say about their care</h2>
-      <div class="testimonials-grid">
+      <div class="testimonials-grid animate-stagger">
         <div class="testimonial-card">
           <span class="testimonial-quote">"</span>
-          <p class="testimonial-text">After years of being told my symptoms were "just stress", Dr Ward took the time to properly investigate and got me on the right treatment. I feel like myself again — I can't recommend her enough.</p>
+          <p class="testimonial-text">After years of being told my symptoms were "just stress", Dr Ward took the time to properly investigate and got me on the right treatment. I feel like myself again. I can't recommend her enough.</p>
           <div class="testimonial-author">
             <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
             <span class="author-name">Patient, age 48</span>
@@ -1717,7 +1811,7 @@
         </div>
         <div class="testimonial-card">
           <span class="testimonial-quote">"</span>
-          <p class="testimonial-text">The initial appointment was a full hour — nobody had ever taken that much time to understand my full history before. Dr Ward is incredibly knowledgeable and reassuring. I felt completely heard.</p>
+          <p class="testimonial-text">The initial appointment was a full hour. Nobody had ever taken that much time to understand my full history before. Dr Ward is incredibly knowledgeable and reassuring. I felt completely heard.</p>
           <div class="testimonial-author">
             <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
             <span class="author-name">Patient, age 52</span>
@@ -1752,14 +1846,14 @@
             <span class="consult-name">Initial Consultation</span>
             <span class="consult-duration">60 minutes · face-to-face or online</span>
           </div>
-          <span class="consult-price">£—</span>
+          <span class="consult-price">POA</span>
         </div>
         <a href="#" class="consult-card">
           <div class="consult-type">
             <span class="consult-name">Follow-up Appointment</span>
             <span class="consult-duration">30 minutes · face-to-face or online</span>
           </div>
-          <span class="consult-price">£—</span>
+          <span class="consult-price">POA</span>
         </a>
         <a href="#" class="consult-card">
           <div class="consult-type">
@@ -1790,7 +1884,7 @@
       <p>Use the form to request an appointment or ask a question. Dr Ward aims to respond within 24 hours. Both face-to-face and online consultations are available.</p>
     </div>
 
-    <div class="contact-body">
+    <div class="contact-body animate-in">
 
       <!-- FORM -->
       <div class="booking-form">
@@ -1837,7 +1931,7 @@
               <div class="radio-group">
                 <div class="radio-pill">
                   <input type="radio" id="format-face" name="format" value="face-to-face" checked>
-                  <label for="format-face">Face-to-face — Hayfield</label>
+                  <label for="format-face">Face-to-face (Hayfield)</label>
                 </div>
                 <div class="radio-pill">
                   <input type="radio" id="format-online" name="format" value="online">
@@ -1913,7 +2007,7 @@
         <div class="map-wrap">
           <iframe
             src="https://maps.google.com/maps?q=Hayfield+Physiotherapy,+15+New+Mills+Road,+Hayfield,+SK22+2JG,+UK&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            title="Liberty Menopause Care — Hayfield clinic location"
+            title="Liberty Menopause Care, Hayfield clinic location"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
@@ -1983,6 +2077,28 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Header gold border on scroll
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Scroll-in animations via IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.animate-in, .animate-stagger').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
 
 </body>
 </html>
