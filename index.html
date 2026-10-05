@@ -968,77 +968,351 @@
 
     .consult-card.featured .consult-price { color: var(--white); }
 
-    /* ── LOCATION ───────────────────────────────────────── */
-    .location {
-      background: var(--cream-dark);
-      padding: 80px 0;
+    /* ── CONTACT / BOOKING ─────────────────────────────── */
+    .contact-section {
+      background: var(--cream);
+      padding: 100px 0 0;
     }
 
-    .location-inner {
+    .contact-header {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 40px 64px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+      gap: 40px;
+      align-items: end;
     }
 
-    .location h2 {
-      font-size: 32px;
+    .contact-header h2 {
+      font-size: clamp(28px, 3vw, 42px);
       font-weight: 500;
       color: var(--teal);
-      margin-bottom: 16px;
+      line-height: 1.2;
     }
 
-    .location p {
-      font-size: 15px;
+    .contact-header h2 em {
+      font-style: italic;
+      color: var(--mauve);
+    }
+
+    .contact-header p {
+      font-size: 15.5px;
       color: var(--mid-grey);
       line-height: 1.8;
-      margin-bottom: 12px;
     }
 
-    .location-details {
+    .contact-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    /* Form */
+    .booking-form {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 48px 44px;
+      box-shadow: 0 2px 40px rgba(43,77,77,0.07);
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+
+    .form-subtitle {
+      font-size: 13.5px;
+      color: var(--mid-grey);
+      margin-bottom: 32px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 24px;
+      gap: 6px;
     }
 
-    .location-detail {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      font-size: 14px;
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14.5px;
       color: var(--charcoal);
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
     }
 
-    .detail-icon {
-      width: 32px;
-      height: 32px;
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(43,77,77,0.08);
+      background: var(--white);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.6;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #ABABAB;
+    }
+
+    /* Consultation type radio pills */
+    .radio-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .radio-pill input[type="radio"] { display: none; }
+
+    .radio-pill label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 16px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: var(--cream);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: all 0.18s;
+      user-select: none;
+    }
+
+    .radio-pill label::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 0.18s;
+    }
+
+    .radio-pill input[type="radio"]:checked + label {
+      border-color: var(--teal);
       background: var(--teal);
+      color: var(--white);
+    }
+
+    .radio-pill input[type="radio"]:checked + label::before {
+      background: rgba(255,255,255,0.7);
+    }
+
+    .form-privacy {
+      font-size: 12px;
+      color: var(--mid-grey);
+      line-height: 1.6;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .form-submit {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      padding: 15px 32px;
       border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14.5px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-submit:hover {
+      background: var(--teal-mid);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Right column */
+    .contact-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-info-card {
+      background: var(--teal);
+      border-radius: 16px;
+      padding: 36px 32px;
+      color: var(--white);
+    }
+
+    .contact-info-card h3 {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 24px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .contact-info-items {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .ci-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.12);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--white);
-      font-size: 14px;
+      font-size: 15px;
       flex-shrink: 0;
     }
 
-    .detail-text { padding-top: 6px; }
+    .ci-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-top: 6px;
+    }
 
-    .map-placeholder {
-      background: linear-gradient(135deg, #D4E0DC 0%, #B8CEC9 100%);
-      border-radius: 12px;
-      aspect-ratio: 4/3;
+    .ci-label {
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      font-weight: 500;
+    }
+
+    .ci-value {
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+
+    /* Map */
+    .map-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 40px rgba(43,77,77,0.1);
+      line-height: 0;
+      border: 1px solid var(--border);
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 340px;
+      border: none;
+      display: block;
+    }
+
+    .map-caption {
+      background: var(--white);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .map-caption-pin {
+      width: 28px;
+      height: 28px;
+      background: var(--rose);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--teal-mid);
-      font-size: 14px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .map-caption-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .map-caption-title {
+      font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.04em;
+      color: var(--charcoal);
+    }
+
+    .map-caption-sub {
+      font-size: 11.5px;
+      color: var(--mid-grey);
     }
 
     /* ── FOOTER ─────────────────────────────────────────── */
@@ -1505,32 +1779,153 @@
     </div>
   </section>
 
-  <!-- LOCATION -->
-  <section class="location" id="contact">
-    <div class="location-inner">
+  <!-- CONTACT / BOOKING -->
+  <section class="contact-section" id="contact">
+
+    <div class="contact-header">
       <div>
-        <p class="section-eyebrow">Location &amp; Contact</p>
-        <h2>Find the clinic</h2>
-        <p>Liberty Menopause Care is based at the Hayfield Physiotherapy &amp; High Peak Health Clinic in Hayfield, near Glossop and Stockport. Online consultations are available nationwide.</p>
-        <div class="location-details">
-          <div class="location-detail">
-            <span class="detail-icon">📍</span>
-            <span class="detail-text">15–17 New Mills Road, Hayfield, High Peak SK22 2JG</span>
+        <p class="section-eyebrow">Book an appointment</p>
+        <h2>Ready to take the<br><em>next step?</em></h2>
+      </div>
+      <p>Use the form to request an appointment or ask a question. Dr Ward aims to respond within 24 hours. Both face-to-face and online consultations are available.</p>
+    </div>
+
+    <div class="contact-body">
+
+      <!-- FORM -->
+      <div class="booking-form">
+        <p class="form-title">Request an appointment</p>
+        <p class="form-subtitle">All fields marked * are required. We'll be in touch to confirm availability.</p>
+
+        <form action="mailto:info@libertymenopause.co.uk" method="post" enctype="text/plain" novalidate>
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="fname">First name *</label>
+              <input type="text" id="fname" name="first_name" placeholder="e.g. Sarah" required>
+            </div>
+
+            <div class="form-group">
+              <label for="lname">Last name *</label>
+              <input type="text" id="lname" name="last_name" placeholder="e.g. Johnson" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email address *</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" placeholder="07700 000000">
+            </div>
+
+            <div class="form-group full">
+              <label for="appt-type">Type of appointment *</label>
+              <select id="appt-type" name="appointment_type" required>
+                <option value="" disabled selected>Please select…</option>
+                <option value="initial">Initial consultation (60 min)</option>
+                <option value="followup">Follow-up appointment (30 min)</option>
+                <option value="blood">Blood test enquiry</option>
+                <option value="corporate">Corporate / workplace menopause</option>
+                <option value="general">General enquiry</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label>Preferred consultation format *</label>
+              <div class="radio-group">
+                <div class="radio-pill">
+                  <input type="radio" id="format-face" name="format" value="face-to-face" checked>
+                  <label for="format-face">Face-to-face — Hayfield</label>
+                </div>
+                <div class="radio-pill">
+                  <input type="radio" id="format-online" name="format" value="online">
+                  <label for="format-online">Online video</label>
+                </div>
+                <div class="radio-pill">
+                  <input type="radio" id="format-either" name="format" value="either">
+                  <label for="format-either">Either suits me</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label for="dates">Preferred dates or times</label>
+              <input type="text" id="dates" name="preferred_dates" placeholder="e.g. weekday mornings, any Wednesday">
+            </div>
+
+            <div class="form-group full">
+              <label for="message">What brings you to the clinic? *</label>
+              <textarea id="message" name="message" rows="4" placeholder="Please share a little about your symptoms or concerns so Dr Ward can prepare for your appointment." required></textarea>
+            </div>
+
           </div>
-          <div class="location-detail">
-            <span class="detail-icon">✉</span>
-            <span class="detail-text">info@libertymenopause.co.uk</span>
+
+          <p class="form-privacy">Your information is treated in strict confidence and will only be used to respond to your enquiry and arrange your appointment. Please see our privacy policy for full details.</p>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-submit">
+              Send appointment request
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
           </div>
-          <div class="location-detail">
-            <span class="detail-icon">⏱</span>
-            <span class="detail-text">Responses within 24 hours (check spam folder)</span>
+        </form>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="contact-sidebar">
+
+        <div class="contact-info-card">
+          <h3>Contact &amp; clinic details</h3>
+          <div class="contact-info-items">
+            <div class="contact-info-item">
+              <span class="ci-icon">📍</span>
+              <div class="ci-text">
+                <span class="ci-label">Clinic address</span>
+                <span class="ci-value">Hayfield Physiotherapy &amp; High Peak Health Clinic<br>15–17 New Mills Road, Hayfield<br>High Peak, SK22 2JG</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <span class="ci-icon">✉</span>
+              <div class="ci-text">
+                <span class="ci-label">Email</span>
+                <span class="ci-value">info@libertymenopause.co.uk</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <span class="ci-icon">⏱</span>
+              <div class="ci-text">
+                <span class="ci-label">Response time</span>
+                <span class="ci-value">Within 24 hours<br><small style="opacity:0.65">Please check your spam folder</small></span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <span class="ci-icon">💻</span>
+              <div class="ci-text">
+                <span class="ci-label">Online appointments</span>
+                <span class="ci-value">Available nationwide via video</span>
+              </div>
+            </div>
           </div>
         </div>
-        <br>
-        <a href="mailto:info@libertymenopause.co.uk" class="btn-primary" style="margin-top:8px">Send an enquiry</a>
-      </div>
-      <div class="map-placeholder">
-        Map — Hayfield, High Peak
+
+        <div class="map-wrap">
+          <iframe
+            src="https://maps.google.com/maps?q=Hayfield+Physiotherapy,+15+New+Mills+Road,+Hayfield,+SK22+2JG,+UK&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            title="Liberty Menopause Care — Hayfield clinic location"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <div class="map-caption">
+            <span class="map-caption-pin">📍</span>
+            <div class="map-caption-text">
+              <span class="map-caption-title">Liberty Menopause Care</span>
+              <span class="map-caption-sub">Hayfield Physiotherapy, SK22 2JG · near Glossop &amp; Stockport</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
